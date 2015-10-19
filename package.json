@@ -1,0 +1,29 @@
+{
+  "name": "socketchat",
+  "version": "0.0.1",
+  "description": "Utilize websockets (socket.io) and React.js to create chat application",
+  "main": "app-server.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
+    "materialize-css": "^0.97.1",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "webpack": "^1.12.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gregkbarnes/socketchat.git"
+  },
+  "author": "Gregory Barnes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gregkbarnes/socketchat/issues"
+  },
+  "homepage": "https://github.com/gregkbarnes/socketchat"
+}
