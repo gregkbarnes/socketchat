@@ -26800,28 +26800,60 @@
 	var React = __webpack_require__(1);
 	var io = __webpack_require__(158);
 
+	var Header = __webpack_require__(209);
+
 	var APP = React.createClass({
-	    displayName: 'APP',
+	  displayName: 'APP',
 
-	    componentWillMount: function componentWillMount() {
-	        this.socket = io('https://socketchat-gregkbarnes.c9.io:8080');
-	        this.socket.on('connect', this.connect);
-	    },
+	  componentWillMount: function componentWillMount() {
+	    this.socket = io('https://socketchat-gregkbarnes.c9.io:8080');{/* Environment dependant */}
+	    this.socket.on('connect', this.connect);
+	  },
 
-	    connect: function connect() {
-	        console.log('connected ' + this.socket.id);
+	  connect: function connect() {
+	    console.log('connected ' + this.socket.id);
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(Header, { title: 'New Header' })
+	    );
+	  }
+	});
+
+	module.exports = APP;
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Header = React.createClass({
+	    displayName: 'Header',
+
+	    proptypes: {
+	        title: React.PropTypes.string.isRequired
 	    },
 
 	    render: function render() {
 	        return React.createElement(
-	            'h1',
+	            'header',
 	            null,
-	            'Hello from react'
+	            React.createElement(
+	                'h1',
+	                null,
+	                this.props.title
+	            )
 	        );
 	    }
 	});
 
-	module.exports = APP;
+	module.exports = Header;
 
 /***/ }
 /******/ ]);
