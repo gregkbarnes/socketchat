@@ -10,8 +10,8 @@ var Header = React.createClass({
             <header>
                 <h1>{this.props.title}</h1>
             </header>
-        )
+        );
     }
-})
+});
 
-module.exports = Header
+module.exports = Header;
