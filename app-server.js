@@ -13,5 +13,15 @@ console.log("Polling server running on port" + process.env.PORT);
 var io = require('socket.io')(server);
 
 io.on('connection', function(socket){
-  console.log('connected: %sd', socket.id);
+  console.log('User connected (%sd)', socket.id);
+  
+  socket.on('chat message', function(msg){
+    console.log(socket.id + ': ' + msg);
+    io.emit('chat message', msg);
+  });
+  
+  socket.on('disconnect', function(){
+    console.log('User disconnected (%sd)', socket.id);
+  });
 });
+

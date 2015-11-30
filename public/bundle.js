@@ -26801,6 +26801,7 @@
 	var io = __webpack_require__(158);
 
 	var Header = __webpack_require__(209);
+	var ChatBox = __webpack_require__(210);
 
 	var APP = React.createClass({
 	  displayName: 'APP',
@@ -26811,14 +26812,15 @@
 	  },
 
 	  connect: function connect() {
-	    console.log('connected ' + this.socket.id);
+	    console.log('Connected: ' + this.socket.id);
 	  },
 
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Header, { title: 'New Header' })
+	      React.createElement(Header, { title: 'New Header' }),
+	      React.createElement(ChatBox, { poopie: this.socket })
 	    );
 	  }
 	});
@@ -26854,6 +26856,56 @@
 	});
 
 	module.exports = Header;
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var io = __webpack_require__(158);
+
+	var socket = io();
+
+	socket.on('chat message', function (msg) {
+	    console.log(socket.id + ': ' + msg);
+	});
+
+	socket.emit('chat message', 'wassssup');
+
+	var ChatBox = React.createClass({
+	    displayName: 'ChatBox',
+
+	    componentDidMount: function componentDidMount() {
+	        console.log('ChatBox Mounted');
+	    },
+
+	    handleSubmit: function handleSubmit(e) {
+	        e.preventDefault();
+	        socket.emit('chat message', this.refs.chatBoxMessage.value);
+	    },
+
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'chatBox' },
+	            React.createElement(
+	                'form',
+	                { onSubmit: this.handleSubmit },
+	                React.createElement('input', { ref: 'chatBoxMessage' }),
+	                React.createElement(
+	                    'button',
+	                    null,
+	                    "SEND"
+	                )
+	            ),
+	            React.createElement('div', { id: 'chatRoom' })
+	        );
+	    }
+	});
+
+	module.exports = ChatBox;
 
 /***/ }
 /******/ ]);
